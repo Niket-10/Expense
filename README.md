@@ -7,7 +7,7 @@ A comprehensive application for tracking personal expenses, managing budgets, an
 - [Screenshots](#screenshots)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
+- [Running the Application](#running-the-application)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -60,8 +60,8 @@ A comprehensive application for tracking personal expenses, managing budgets, an
 
 ### Prerequisites
 - Node.js and npm installed
-- PostgreSQL installed and running
-- Docker (optional, for containerization)
+- Docker and Docker Compose installed
+- PostgreSQL (will be run in a Docker container)
 
 ### Installation
 
@@ -80,31 +80,58 @@ A comprehensive application for tracking personal expenses, managing budgets, an
    npm install
    ```
 
-### Database Setup
+## Running the Application
 
-1. Create a PostgreSQL database:
-   ```sql
-   CREATE DATABASE expense_tracker;
-   ```
+Follow these steps to run the Personal Expense Tracker:
 
-2. Run the provided SQL scripts to set up the necessary tables and seed data.
-
-## Usage
-
-1. Start the application:
+1. Start the PostgreSQL database using Docker:
    ```bash
-   npm start
+   docker-compose up
+   ```
+   Leave this terminal window open.
+
+2. In a new terminal, navigate to the backend directory and start the server:
+   ```bash
+   cd backend
+   npm run dev
    ```
 
-2. Access the application in your browser at http://localhost:3000
+3. Ensure PostgreSQL is running and accessible. In a new terminal:
+   ```bash
+   docker exec -it <container_name> psql -U <POSTGRES_USER>
+   ```
+   Replace `<container_name>` with your actual container name (you can press Tab for autocomplete) and `<POSTGRES_USER>` with the PostgreSQL username specified in your Docker configuration.
 
-3. Sign up for a new account or log in with existing credentials
+4. Once you've confirmed the database is running, you can exit the PostgreSQL prompt:
+   ```sql
+   \q
+   ```
 
-4. Use the dashboard to get an overview of your finances
+5. In a web browser, navigate to:
+   ```
+   http://localhost:3000
+   ```
 
-5. Add expenses, set budgets, and manage categories as needed
+6. You should now see the Personal Expense Tracker application running. Sign up for a new account or log in with existing credentials to start using the app.
 
-6. Generate reports to analyze your spending habits
+### Stopping the Application
+
+1. To stop the backend server, press `Ctrl + C` in its terminal.
+2. To stop the Docker containers, press `Ctrl + C` in the terminal where you ran `docker-compose up`, then run:
+   ```bash
+   docker-compose down
+   ```
+
+## Troubleshooting
+
+- If you encounter any issues connecting to the database, ensure that the PostgreSQL container is running:
+  ```bash
+  docker ps
+  ```
+- Check the logs of the PostgreSQL container for any error messages:
+  ```bash
+  docker logs <container_name>
+  ```
 
 ## Contributing
 
