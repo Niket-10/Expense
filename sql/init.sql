@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS categories (
     UNIQUE (user_id, category) -- Unique constraint
 );
 
+
 CREATE TABLE IF NOT EXISTS budgets (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,

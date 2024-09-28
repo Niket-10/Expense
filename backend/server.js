@@ -18,11 +18,8 @@ const pool = new Pool({
     database: process.env.PGDATABASE,
     password: process.env.PGPASSWORD,
     port: process.env.PGPORT,
+     
 });
-
-
-
-
 const Port = process.env.PORT || 3001;
 const jwtKey = process.env.JWT_SECRET_KEY;
 const app = express();
