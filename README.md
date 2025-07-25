@@ -1,4 +1,5 @@
-# Personal Expense Tracker
+# Personal Expense Tracker 
+[Demo Video](#demo.mp4)
 
 A comprehensive application for tracking personal expenses, managing budgets, and analyzing spending habits.
 
